@@ -8,6 +8,9 @@ from langchain.vectorstores import Chroma
 from openai import AzureOpenAI
 import uuid
 
+# Disable Chroma telemetry and avoid SQLite usage for compatibility
+os.environ["CHROMA_TELEMETRY"] = "False"
+
 # Load environment variables
 load_dotenv()
 deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
@@ -49,9 +52,9 @@ if uploaded_files:
     splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
     chunks = splitter.split_documents(docs)
 
-    vectordb = Chroma.from_documents(chunks, embedding_model, persist_directory="./chroma_db")
-    vectordb.persist()
-    st.success("✅ Content embedded and stored in Chroma.")
+    # Use in-memory Chroma to avoid sqlite3 issues on cloud platforms
+    vectordb = Chroma.from_documents(chunks, embedding_model)
+    st.success("✅ Content embedded and stored in Chroma (in-memory mode).")
 
     # User query input
     query = st.text_input("❓ Ask a question about the PDFs")

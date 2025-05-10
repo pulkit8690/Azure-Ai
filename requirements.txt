@@ -8,6 +8,7 @@ sentence-transformers
 chromadb>=0.4.22
 pypdf
 protobuf<4.24.0
+torch<2.2
 
 azure-identity
 azure-storage-blob
