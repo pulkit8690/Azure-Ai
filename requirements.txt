@@ -1,11 +1,13 @@
 streamlit
 python-dotenv
 uuid
-openai
-langchain
-langchain-community
+openai>=1.0.0
+langchain>=0.1.14
+langchain-community>=0.0.32
 sentence-transformers
-chromadb
+chromadb>=0.4.22
 pypdf
+protobuf<4.24.0
+
 azure-identity
 azure-storage-blob
