@@ -1,0 +1,11 @@
+streamlit
+python-dotenv
+uuid
+openai
+langchain
+langchain-community
+sentence-transformers
+chromadb
+pypdf
+azure-identity
+azure-storage-blob
